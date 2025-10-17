@@ -1,0 +1,24 @@
+{
+    // 🔧 General formatting
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    // 🧠 JS / TS / Vue / JSON formatting via Prettier
+    "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+    // 🐘 PHP formatting (Laravel Pint)
+    "[php]": { "editor.defaultFormatter": "junstyle.php-cs-fixer" },
+    "php-cs-fixer.executablePath": "${workspaceFolder}/vendor/bin/php-cs-fixer",
+    "php-cs-fixer.executablePathWindows": "${workspaceFolder}\\vendor\\bin\\php-cs-fixer.bat",
+    "php-cs-fixer.rules": "@PSR12,ordered_imports,no_unused_imports,array_syntax",
+
+    // 🎨 Blade templates
+    "[blade]": { "editor.defaultFormatter": "shufo.vscode-blade-formatter" }
+}
