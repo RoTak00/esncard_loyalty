@@ -30,6 +30,7 @@ Formatting runs automatically on save; ensure “Format on Save” is enabled.
 
 ```bash
 cp .env.example .env
+sudo systemctl stop mysql
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed

@@ -16,8 +16,6 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white dark:bg-gray-800 shadow">
@@ -28,8 +26,10 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+           <main class="flex flex-col-reverse lg:flex-row lg:justify-center">
+                <div class="max-w-[600px] w-full lg:max-w-full lg:w-[600px]">
+                    {{ $slot }}
+                </div>
             </main>
         </div>
     </body>
