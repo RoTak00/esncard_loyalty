@@ -1,21 +1,28 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InfoController;
+use App\Http\Controllers\StudentAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register/{id?}', function () {
-    return view('register');
-})->name('register');
+Route::get('/register/{id}', [StudentAuthController::class, 'register'])->name('register');
 
+Route::post('/register/{id}', [StudentAuthController::class, 'register_submit'])->name('register.submit');
 
-Route::get('login/{id?}', function () {
-    return view('login');
-})->name('login');
+Route::get('/me', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/me/stats', [DashboardController::class, 'stats'])->name('dashboard.stats');
+
+Route::get('/me/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
+
+Route::get('/info/terms', [InfoController::class, 'terms_and_conditions'])->name('terms-and-conditions');
+
+Route::get('/about', [InfoController::class, 'about'])->name('about');
 
 
 Route::get('admin/login', function () {
