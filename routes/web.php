@@ -8,17 +8,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('welcome');
+
+Route::middleware('esn.guest')->group(function () {
+
+    Route::get('/register/{id}', [StudentAuthController::class, 'register'])->name('register');
+
+    Route::post('/register/{id}', [StudentAuthController::class, 'register_submit'])->name('register.submit');
 });
 
-Route::get('/register/{id}', [StudentAuthController::class, 'register'])->name('register');
 
-Route::post('/register/{id}', [StudentAuthController::class, 'register_submit'])->name('register.submit');
+Route::middleware('esn.auth')->group(function () {
 
-Route::get('/me', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/me', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/me/stats', [DashboardController::class, 'stats'])->name('dashboard.stats');
+    Route::get('/me/stats', [DashboardController::class, 'stats'])->name('dashboard.stats');
 
-Route::get('/me/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
+    Route::get('/me/settings', [DashboardController::class, 'settings'])->name('dashboard.settings');
+
+    Route::post('/logout', [StudentAuthController::class, 'logout'])->name('logout');
+
+});
+
 
 Route::get('/info/terms', [InfoController::class, 'terms_and_conditions'])->name('terms-and-conditions');
 

@@ -6,22 +6,23 @@
     </x-slot>
 
     <h3>Register to {{ $restaurant_name }}</h3>
+
     <form action="{{ $register_action }}" method="POST">
         @csrf
 
         <div class="mb-4">
             <label for="name" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Name:</label>
-            <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <input type="text" name="name" id="name" value = "{{ old('name') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
 
         <div class="mb-4">
             <label for="surname" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Surname:</label>
-            <input type="text" name="surname" id="surname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <input type="text" name="surname" id="surname"  value = "{{ old('surname') }}"class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
 
         <div class="mb-4">
             <label for="esncard_serial_code" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">ESNcard Serial Code:</label>
-            <input type="text" name="esncard_serial_code" id="esncard_serial_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <input type="text" name="esncard_serial_code" id="esncard_serial_code"  value = "{{ old('esncard_serial_code') }}"class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
 
         <div class="mb-4 flex items-center">

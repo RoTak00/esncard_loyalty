@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class StudentAuthController extends Controller
 {
     public function register($id)
@@ -26,13 +28,33 @@ class StudentAuthController extends Controller
         return view('register', $data);
     }
 
-    public function register_submit($id)
+    public function register_submit($id, Request $request)
     {
         // Verify the ESNcard
+        $data = $request->validate([
+            'esncard_serial_code'    => ['required','string','max:64'],
+            'name' => ['required','string','max:64'],
+            'surname'  => ['required','string','max:64'],
+        ]);
 
-        // Register or login the student
+        $request->session()->regenerate();
 
-        // Redirect to the user QR code page
-        return redirect()->route('dashboard');
+        // Store only what you need
+        $request->session()->put('student', [
+            'esncard'    => $data['esncard_serial_code'],
+            'name' => $data['name'],
+            'surname'  => $data['surname'],
+            'company_id' => $id
+        ]);
+
+        return redirect()->intended('/me');
+
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

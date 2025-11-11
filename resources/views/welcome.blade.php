@@ -6,6 +6,11 @@
     </x-slot>
 
     <div>
+        @if (session('status'))
+            <div class="alert alert-info">
+                {{ session('status') }}
+            </div>
+        @endif
         <h1>Try these links:</h1>
         <a href = "/register/aaa">Register to Cafe Bar</a>
 

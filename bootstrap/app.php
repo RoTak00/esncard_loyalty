@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'esn.auth' => \App\Http\Middleware\StudentAuthenticated::class,
+            'esn.guest' => \App\Http\Middleware\StudentGuest::class
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
