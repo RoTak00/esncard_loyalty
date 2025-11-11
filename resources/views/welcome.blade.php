@@ -11,25 +11,11 @@
                 {{ session('status') }}
             </div>
         @endif
-        <h1>Try these links:</h1>
-        <a href = "/register/aaa">Register to Cafe Bar</a>
+        <h1>Try this link:</h1>
+        <a href = "/register/aaa" class = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" >Register to Cafe Bar</a>
+        <p>Use any account and number you want (mock auth for now)</p>
+        <p>Then, try the /me, /me/stats, /me/settings, /about and /info/terms pages</p>
 
-
-        <h1 class="text-2xl">To-do: </h1>
-
-        <h2 class="text-xl">Database:</h2>
-
-        <ul class="list-disc">
-            <li>Creating models for (Ion): <ul class="list-disc ms-5">
-                    <li>Company</li>
-                    <li>CompanyRule</li>
-                    <li>CompanyStudent</li>
-                    <li>CompanyStamp</li>
-                </ul>
-            </li>
-            <li>Renaming Users to CompanyAdmin and setting up authentication</li>
-            <li>Implementing an "Auth" based on the ESNcard (Robert)</li>
-        </ul>
 
     </div>
 </x-app-layout>

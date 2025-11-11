@@ -1,6 +1,6 @@
 # ESNcard Loyalty App
 
-Last update: 06.10 - Added some ChatGPT written installation guides for Windows 11 and Linux.
+Last update: 11.10 - Added controllers for the frontend pages and set up a mock authentication system with custom middlewares.
 
 ## Overview
 
