@@ -26,12 +26,12 @@
                 </header>
             @endisset
 
-            @if(session('student'))
+            @auth('student')
                 <form method = "POST" action = "/logout" class="text-right mr-10 mt-5">
                     @csrf
                     <input type = "submit" value = "Logout" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 </form>
-            @endif
+            @endauth
 
             <!-- Page Content -->
            <main class="flex flex-col-reverse lg:flex-row lg:justify-center">

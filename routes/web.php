@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::middleware('esn.guest')->group(function () {
+Route::middleware('guest:student')->group(function () {
 
     Route::get('/register/{id}', [StudentAuthController::class, 'register'])->name('register');
 
@@ -18,7 +18,7 @@ Route::middleware('esn.guest')->group(function () {
 });
 
 
-Route::middleware('esn.auth')->group(function () {
+Route::middleware('auth:student')->group(function () {
 
     Route::get('/me', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -35,24 +35,12 @@ Route::get('/info/terms', [InfoController::class, 'terms_and_conditions'])->name
 
 Route::get('/about', [InfoController::class, 'about'])->name('about');
 
-
-Route::get('admin/login', function () {
-    return view('admin.login');
+Route::middleware('guest:web')->group(function () {
+    Route::get('admin/login', function () {
+        return view('admin.login');
+    });
 });
 
-
-Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// require __DIR__.'/auth.php';
+Route::middleware('auth:web')->group(function () {
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});

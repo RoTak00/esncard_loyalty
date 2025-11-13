@@ -23,6 +23,9 @@
         <div class="mb-4">
             <label for="esncard_serial_code" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">ESNcard Serial Code:</label>
             <input type="text" name="esncard_serial_code" id="esncard_serial_code"  value = "{{ old('esncard_serial_code') }}"class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            @error('esncard_serial_code')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mb-4 flex items-center">

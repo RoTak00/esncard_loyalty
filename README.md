@@ -1,6 +1,6 @@
 # ESNcard Loyalty App
 
-Last update: 11.10 - Added controllers for the frontend pages and set up a mock authentication system with custom middlewares.
+Last update: 13.11 - Improved authentication system, separating Student and Admin auth while implementing it with Laravel Auth system.
 
 ## Overview
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class StudentAuthController extends Controller
 {
@@ -37,15 +40,28 @@ class StudentAuthController extends Controller
             'surname'  => ['required','string','max:64'],
         ]);
 
-        $request->session()->regenerate();
+        // Verify if the student with this name and surname exists
+        $student = Student::where('forename', $data['name'])
+            ->where('surname', $data['surname'])->first();
 
-        // Store only what you need
-        $request->session()->put('student', [
-            'esncard'    => $data['esncard_serial_code'],
-            'name' => $data['name'],
-            'surname'  => $data['surname'],
-            'company_id' => $id
-        ]);
+        // If the student is found, we will log them in if the hashed ESNcard serial code matches
+        if ($student) {
+            if (!Hash::check($data['esncard_serial_code'], $student->esncard_serial)) {
+                return back()->withErrors(['esncard_serial_code' => 'The ESNcard serial code is not valid']);
+            }
+        } else {
+            // Otherwise, we will create a new student
+            $student = Student::create([
+                'forename' => $data['name'],
+                'surname' => $data['surname'],
+                'esncard_serial' => Hash::make($data['esncard_serial_code']),
+            ]);
+        }
+
+        // Login using the student guard
+        Auth::guard('student')->login($student);
+
+        $request->session()->regenerate();
 
         return redirect()->intended('/me');
 

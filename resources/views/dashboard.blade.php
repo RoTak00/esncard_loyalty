@@ -5,7 +5,10 @@
         </h2>
     </x-slot>
 
-    <p>Hello, {{ session('student.name') }} {{ session('student.surname') }}</p>
+    @auth('student')
+    <p>Hello, {{ auth('student')->user()->forename }} {{ auth('student')->user()->surname }}</p>
+
     <h3>Here's your QR!</h3>
+    @endauth
 
 </x-app-layout>
