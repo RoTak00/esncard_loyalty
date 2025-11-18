@@ -9,9 +9,8 @@
         <p>Hello, {{ auth('student')->user()->forename }} {{ auth('student')->user()->surname }}</p>
 
         <h3>Here's your QR!</h3>
-        <div class="qr-container">
-            {!! QrCode::size(300)->generate(auth('student')->user()->student_id) !!}
-
+        <div class="qr-container mt-4">
+            {!! QrCode::size(300)->generate($data) !!}
         </div>
     @endauth
 
