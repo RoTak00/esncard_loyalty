@@ -8,10 +8,10 @@ class DashboardController extends Controller
     {
         $student = auth()->guard('student')->user();
 
-        $token = hash('sha256', $student->id . floor(time() / 10));
+        $token = hash('sha256', $student->student_id . floor(time() / 10));
 
         $data = json_encode([
-            'student_id' => $student->id,
+            'student_id' => $student->student_id,
             'token' => $token
         ]);
 
