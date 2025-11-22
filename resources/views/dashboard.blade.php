@@ -10,7 +10,7 @@
 
         <h3>Here's your QR!</h3>
         <div class="qr-container mt-4">
-            {!! QrCode::size(300)->generate($data) !!}
+            {!! QrCode::size(300)->generate($token) !!}
         </div>
     @endauth
 

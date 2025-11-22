@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentQrToken;
+
 class DashboardController extends Controller
 {
     public function index()
     {
         $student = auth()->guard('student')->user();
 
-        $token = hash('sha256', $student->student_id . floor(time() / 10));
+        StudentQrToken::where('student_id', $student->student_id)->delete();
 
-        $data = json_encode([
+        $token = bin2hex(random_bytes(16));
+
+        StudentQrToken::create([
             'student_id' => $student->student_id,
-            'token' => $token
+            'token' => $token,
+            'expires_at' => now()->addMinutes(10)
         ]);
 
-        return view('dashboard', compact('data'));
+        return view('dashboard', compact('token'));
     }
 
     public function stats()
